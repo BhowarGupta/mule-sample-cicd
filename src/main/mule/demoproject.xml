@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="3abe9613-90a6-4fb2-938f-2c6fc81559ca" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="demoprojectFlow" doc:id="6d60b5dd-98a1-4ab0-a2d6-01be110de765" >
+		<http:listener doc:name="Listener" doc:id="6c28cbdb-ecf0-446a-8c48-aba030849f55" config-ref="HTTP_Listener_config" path="/test"/>
+		<set-payload value="#['Welcome to mule']" doc:name="Set Payload" doc:id="2e2bee46-0a15-47fb-84fa-2cc4022fb9b1" />
+		<logger level="INFO" doc:name="Logger" doc:id="4e2a4cbf-0747-4a3d-af8b-aa16fc4d696e" message="#[payload]" category="custom_message"/>
+	</flow>
+</mule>
